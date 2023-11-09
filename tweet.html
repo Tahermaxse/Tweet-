@@ -1,0 +1,108 @@
+<html>
+	<!-- @tahermaxse-->
+	<title>postTweet</title>
+<head>
+	<style>
+		* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f5f8fa;
+}
+
+.container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.input-container {
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
+textarea {
+	width: 100%;
+	height: 80px;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	resize: none;
+	font-size: 16px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+button {
+	background-color: #1da1f2;
+	color: #fff;
+	border: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+	cursor: pointer;
+	float: right;
+}
+
+button:hover {
+	background-color: #0c85d0;
+}
+
+.tweet {
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
+.tweet p {
+	margin-bottom: 5px;
+}
+
+.tweet .date {
+	color: #999;
+	font-size: 14px;
+}
+	</style>
+	
+	
+</head>
+<body>
+	<div class="container">
+		<div class="input-container">
+			<textarea id="tweet-input" placeholder="What's happening?"></textarea>
+			<button id="tweet-button" onclick="postTweet()">Tweet</button>
+		</div>
+		<ul id="tweet-list"></ul>
+	</div>
+
+	<script>
+			let tweetList = document.getElementById("tweet-list");
+let tweetInput = document.getElementById("tweet-input");
+
+function postTweet() {
+    let tweetText = tweetInput.value;
+
+    if(tweetText.length === 0) {
+        alert("Please enter a tweet.");
+        return;
+    }
+
+    let tweet = document.createElement("li");
+    tweet.classList.add("tweet");
+    tweet.innerHTML = `
+        <p>${tweetText}</p>
+        <p class="date">${new Date().toLocaleString()}</p>
+    `;
+
+    tweetList.insertBefore(tweet, tweetList.firstChild);
+
+    tweetInput.value = "";
+}
+	</script>
+</body>
+</html>
